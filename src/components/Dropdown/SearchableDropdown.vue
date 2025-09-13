@@ -22,6 +22,11 @@ const props = defineProps({
     default: "Виберіть...",
     required: false,
   },
+  customItemClass: {
+    type: String,
+    default: "",
+    required: false,
+  }
 });
 
 const emit = defineEmits(["update:modelValue"]);
@@ -138,7 +143,7 @@ watch(isOpen, () => {
 
 <template>
   <div
-    class="relative w-64 focus:outline outline-blue-500"
+    class="relative w-64"
     tabindex="0"
   >
     <!-- Selected items -->
@@ -151,6 +156,7 @@ watch(isOpen, () => {
     >
       <DropdownSelection
         v-if="!Array.isArray(selectedItems)"
+        class="w-full justify-between"
         :label="selectionLabel"
         @remove="clearSelection"
       />
@@ -185,9 +191,9 @@ watch(isOpen, () => {
       <DropdownList>
         <DropdownItem
           class="m-0.5"
-          :class="{
+          :class="[{
             'bg-gray-100 outline outline-blue-500': index === currentItemIndex,
-          }"
+          }, props.customItemClass]"
           v-for="(item, index) in filteredItems"
           :key="index"
           :label="item.label"

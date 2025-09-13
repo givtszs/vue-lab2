@@ -71,11 +71,12 @@ const count = ref(0);
         />
         <SearchableDropdown
           :items="[
-            { label: 'Item 1', value: 'item-1' },
-            { label: 'Item 2', value: 'item-2' },
-            { label: 'Item 3', value: 'item-3' },
+            { label: '10', value: '10' },
+            { label: '11', value: '11' },
+            { label: '12', value: '12' },
           ]"
           :multiselect="false"
+          custom-item-class="bg-gray-100! outline-red-500! hover:bg-blue-100!"
           @update:modelValue="console.log($event)"
         />
       </div>
