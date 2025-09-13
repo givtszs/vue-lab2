@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import Button from "@/components/Button.vue";
-import Dropdown from "./Dropdown.vue";
+import SearchableDropdown from "@/components/Dropdown/SearchableDropdown.vue";
 
 defineProps({
   msg: String,
@@ -60,21 +60,23 @@ const count = ref(0);
       </div>
 
       <div class="flex items-center gap-3">
-        <Dropdown
+        <SearchableDropdown
           :items="[
             { label: 'Item 1', value: 'item-1' },
             { label: 'Item 2', value: 'item-2' },
             { label: 'Item 3', value: 'item-3' },
           ]"
           :multiselect="true"
+          @update:modelValue="console.log($event)"
         />
-        <Dropdown
+        <SearchableDropdown
           :items="[
             { label: 'Item 1', value: 'item-1' },
             { label: 'Item 2', value: 'item-2' },
             { label: 'Item 3', value: 'item-3' },
           ]"
           :multiselect="false"
+          @update:modelValue="console.log($event)"
         />
       </div>
     </div>
