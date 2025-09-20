@@ -1,4 +1,11 @@
 <script setup>
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { far } from "@fortawesome/free-regular-svg-icons";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+
+library.add(fas, far);
+
 const props = defineProps({
   label: {
     type: String,
@@ -16,9 +23,9 @@ const props = defineProps({
   },
   icon: {
     type: String,
-    default: "",
+    default: null,
     required: false,
-  }
+  },
 });
 
 const emit = defineEmits(["click"]);
@@ -44,7 +51,11 @@ const colorClasses = {
     :class="[sizeClasses[props.size], colorClasses[props.color]]"
     @click="emit('click')"
   >
-    <slot name="icon" />
+    <FontAwesomeIcon
+      v-if="props.icon !== null"
+      :icon="props.icon"
+      class="w-4 h-4"
+    />
     <span>{{ props.label }}</span>
   </button>
 </template>

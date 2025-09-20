@@ -86,6 +86,7 @@ function handleMultiSelect(item) {
 function clearSelection() {
   selectedItems.value = props.multiselect ? [] : null;
   isOpen.value = false;
+
   emit("update:modelValue", selectedItems.value);
 }
 
@@ -93,6 +94,7 @@ function removeItem(item) {
   selectedItems.value = selectedItems.value.filter(
     (selectedItem) => selectedItem.value !== item.value
   );
+
   emit("update:modelValue", selectedItems.value);
 }
 
@@ -168,8 +170,6 @@ watch(isOpen, () => {
         @remove="removeItem(item)"
       />
     </div>
-
-    {{ dropdownTrigger?.value }}
 
     <DropdownTrigger
       v-model="searchQuery"
